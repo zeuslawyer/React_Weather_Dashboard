@@ -22,11 +22,11 @@ class SearchBar extends Component {
   };
 
   componentDidUpdate = () => {
-    console.log("compUpdateCount:  ", this.counter2++, this.props.weather.list);
+    // console.log("compUpdateCount:  ", this.counter2++, this.props.weather.list);
   };
 
   render() {
-    console.log("render count:  ", this.counter3++, this.props.weather.list);
+    // console.log("render count:  ", this.counter3++, this.props.weather.list);
     return (
       <div>
         <form className="input-group" onSubmit={this.onFormSubmit}>
@@ -52,6 +52,6 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 export default connect(
-  mapStateToProps,
+  null,
   { fetchWeather }
 )(SearchBar);

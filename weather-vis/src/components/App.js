@@ -6,7 +6,7 @@ import WeatherList from './WeatherList'
 class App extends Component {
   render() {
     return (
-      <div>
+      <div style={{width:'80%', margin:'25px auto'}}>
         <SearchBar />
         <WeatherList />
       </div>

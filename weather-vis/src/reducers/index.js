@@ -5,10 +5,10 @@ import {FETCH_WEATHER} from '../actions/index'
 const weatherRedcuer =(state={}, action) => {
   switch (action.type) {
     case FETCH_WEATHER:
-      console.log('action received...', action);
+      console.log('action received in reducer...', action);
       return {...state, ...action.payload.data};
     default:
-    console.log('unmatched action type received...', action);
+    console.log('unmatched action type received in reducer...', action);
       return state;
   }
 }
