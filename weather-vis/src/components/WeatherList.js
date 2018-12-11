@@ -4,8 +4,14 @@ import {connect} from 'react-redux'
 
 class WeatherList extends Component {
 
-  renderData=()=>{
-    if (!this.props.weather.list) return <div></div>; 
+  renderWeatherList=(cityData)=>{
+
+    
+  }
+  render() {
+    if (!this.props.weather.list) return null; 
+    
+    const {list} = this.props.weather.list
     return (
       <div>
         <table className="table table-hover">
@@ -18,16 +24,13 @@ class WeatherList extends Component {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>{this.props.weather.city.name}</td>
-            </tr>
+            {/* {list.map(this.renderWeatherList) */}
+
+            })}
           </tbody>
         </table>
       </div>
     );
-  }
-  render() {
-    return this.renderData();
   }
 }
 
