@@ -1,15 +1,14 @@
 import React, { Component } from "react";
-import {connect} from 'react-redux'
-import {fetchWeather} from '../actions/index'
+import { connect } from "react-redux";
+import { fetchWeather } from "../actions/index";
 
 class SearchBar extends Component {
   state = { term: "" };
 
   onFormSubmit = event => {
     event.preventDefault();
-    console.log("form submitted with term: ", this.state.term );
-    this.props.fetchWeather(this.state.term)
-  
+    console.log("form submitted with term: ", this.state.term);
+    this.props.fetchWeather(this.state.term);
   };
   onInputChange = e => {
     this.setState({ term: e.target.value });
@@ -36,4 +35,11 @@ class SearchBar extends Component {
   }
 }
 
-export default connect(null, {fetchWeather})(SearchBar);
+const mapStateToProps = (state, ownProps) => {
+  return { weather: state.weather };
+};
+
+export default connect(
+  mapStateToProps,
+  { fetchWeather }
+)(SearchBar);

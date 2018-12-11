@@ -11,7 +11,6 @@ export const fetchWeather= (city)=>{
     console.log('fetch data action creator fired....');
     const url = `${BASE_URL}&q=${city}`
     let response =  axios.get(url)  // redux-promise will intercept
-    console.log(response);
 
     return {
         type: FETCH_WEATHER,
