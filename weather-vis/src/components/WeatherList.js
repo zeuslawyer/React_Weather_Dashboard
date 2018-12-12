@@ -1,33 +1,28 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Chart from './Chart'
+import Chart from "./Chart";
 
 class WeatherList extends Component {
   renderWeatherList = cityData => {
-    const temps = cityData.list.map(weather => {
-      return weather.main.temp;
-    });
-    const winds = cityData.list.map(weather => {
-      return weather.wind.speed;
-    });
-    const humidity = cityData.list.map(weather => {
-      return weather.main.humidity;
-    });
-    console.log(humidity);
+    var temps = cityData.list.map(weather => weather.main.temp);
+    const tempsInDegrees = temps.map((temperature)=>temperature-273.15)
+
+    const winds = cityData.list.map(weather => weather.wind.speed);
+    const humidity = cityData.list.map(weather => weather.main.humidity);
 
     return (
       <tr key={`${cityData.city.name}_${cityData.city.id}`}>
         <td>{cityData.city.name}</td>
         <td>
-          <Chart data={temps} color='red'/>
+          <Chart data={tempsInDegrees} color="red" unit="degrees celsius" />
+          
         </td>
         <td>
-          <Chart data={winds} color='green'/>
+          <Chart data={winds} color="green" unit ="hPa"/>
         </td>
         <td>
-          <Chart data={humidity} color='orange'/>
+          <Chart data={humidity} color="orange" unit="%" />
         </td>
-        
       </tr>
     );
   };
@@ -41,9 +36,9 @@ class WeatherList extends Component {
           <thead>
             <tr>
               <th>City</th>
-              <th>Temp </th>
-              <th>Wind</th>
-              <th>Humidity</th>
+              <th>Temp(C)</th>
+              <th>Wind(hPa)</th>
+              <th>Humidity(%)</th>
             </tr>
           </thead>
           <tbody>{this.props.weather.map(this.renderWeatherList)}</tbody>
