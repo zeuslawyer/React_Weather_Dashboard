@@ -1,17 +1,21 @@
 import React, { Component } from "react";
-import {connect} from 'react-redux'
-
+import { connect } from "react-redux";
 
 class WeatherList extends Component {
-
-  renderWeatherList=(cityData)=>{
-
-    
-  }
+  renderWeatherList = cityData => {
+    return (
+      <tr key={`${cityData.city.name}_${cityData.city.id}`}>
+        <td>{cityData.city.name}</td>
+        <td>{cityData.list[0].main.temp}</td>
+        <td>{cityData.list[0].wind.speed}</td>
+        <td>{cityData.list[0].main.humidity}</td>
+      </tr>
+    );
+  };
   render() {
-    if (!this.props.weather.list) return null; 
-    
-    const {list} = this.props.weather.list
+    console.log(this.props.weather);
+    if (!this.props.weather) return <div />;
+
     return (
       <div>
         <table className="table table-hover">
@@ -23,11 +27,7 @@ class WeatherList extends Component {
               <th>Humidity</th>
             </tr>
           </thead>
-          <tbody>
-            {/* {list.map(this.renderWeatherList) */}
-
-            })}
-          </tbody>
+          <tbody>{this.props.weather.map(this.renderWeatherList)}</tbody>
         </table>
       </div>
     );
@@ -35,8 +35,7 @@ class WeatherList extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { weather: state.weather };
+  return { weather: state.weather, response: state };
 };
-
 
 export default connect(mapStateToProps)(WeatherList);
