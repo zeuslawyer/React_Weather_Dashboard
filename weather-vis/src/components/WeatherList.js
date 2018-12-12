@@ -4,8 +4,8 @@ import Chart from "./Chart";
 
 class WeatherList extends Component {
   renderWeatherList = cityData => {
-    var temps = cityData.list.map(weather => weather.main.temp);
-    const tempsInDegrees = temps.map((temperature)=>temperature-273.15)
+    var temps = cityData.list.map(weather => weather.main.temp );
+    const tempsInDegrees = temps.map(temperature => temperature - 273.15);
 
     const winds = cityData.list.map(weather => weather.wind.speed);
     const humidity = cityData.list.map(weather => weather.main.humidity);
@@ -15,10 +15,9 @@ class WeatherList extends Component {
         <td>{cityData.city.name}</td>
         <td>
           <Chart data={tempsInDegrees} color="red" unit="degrees celsius" />
-          
         </td>
         <td>
-          <Chart data={winds} color="green" unit ="hPa"/>
+          <Chart data={winds} color="green" unit="hPa" />
         </td>
         <td>
           <Chart data={humidity} color="orange" unit="%" />
@@ -27,7 +26,8 @@ class WeatherList extends Component {
     );
   };
   render() {
-    console.log(this.props.weather);
+    console.log('weather array....', this.props.weather);
+  
     if (!this.props.weather) return <div />;
 
     return (
@@ -49,7 +49,7 @@ class WeatherList extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { weather: state.weather, response: state };
+  return { weather: state.weather};
 };
 
 export default connect(mapStateToProps)(WeatherList);

@@ -12,14 +12,11 @@ export const fetchWeather = city => {
   // redux-promise will intercept & await till response resolves before
   //handing it to reducer
 
-  try {
-    let response = axios.get(url);
+  let response = axios.get(url);
+  
+    return {
+      type: FETCH_WEATHER,
+      payload: response
+    };
 
-  return {
-    type: FETCH_WEATHER,
-    payload: response
-  };
-  } catch (error) {
-    console.log(error.message);
-  }
 };
