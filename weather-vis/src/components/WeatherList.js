@@ -4,7 +4,7 @@ import Chart from "./Chart";
 
 class WeatherList extends Component {
   renderWeatherList = cityData => {
-    var temps = cityData.list.map(weather => weather.main.temp );
+    var temps = cityData.list.map(weather => weather.main.temp);
     const tempsInDegrees = temps.map(temperature => temperature - 273.15);
 
     const winds = cityData.list.map(weather => weather.wind.speed);
@@ -26,11 +26,13 @@ class WeatherList extends Component {
     );
   };
   render() {
-    console.log('weather array....', this.props.weather);
-  
-    if (!this.props.weather) return <div />;
+    console.log(
+      "weather array....",
+      Boolean(this.props.weather),
+      this.props.weather
+    );
 
-    return (
+     return (
       <div>
         <table className="table table-hover">
           <thead>
@@ -49,7 +51,7 @@ class WeatherList extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { weather: state.weather};
+  return { weather: state.weather };
 };
 
 export default connect(mapStateToProps)(WeatherList);
